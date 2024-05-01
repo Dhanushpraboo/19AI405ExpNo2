@@ -54,6 +54,31 @@ Now, the Stack becomes empty, which means we have visited all the nodes, and our
  <li>If Not Visited, add it to the STACK. Else Call The Function Again Until No more nodes needs to be visited.</li>
 </ol></B>
 
+### Program
+~~~
+import defaultdict
+from collections import defaultdict
+def dfs(graph,start,visited,path):
+    path.append(start)
+    visited[start]=True
+    for neighbour in graph[start]:
+        if visited[neighbour]==False:
+            dfs(graph,neighbour,visited,path)
+            visited[neighbour]=True
+    return path
+graph=defaultdict(list)
+n,e=map(int,input().split())
+for i in range(e):
+    u,v=map(str,input().split())
+    graph[u].append(v)
+    graph[v].append(u)
+#print(graph)
+start='A'
+visited=defaultdict(bool)
+path=[]
+traversedpath=dfs(graph,start,visited,path)
+print(traversedpath)
+~~~
 <hr>
 <h3>Sample Input</h3>
 <hr>
@@ -88,8 +113,11 @@ F H <BR>
 <hr>
 ['0', '1', '2', '3', '4']
 
+### Output
+![image](https://github.com/Dhanushpraboo/19AI405ExpNo2/assets/94426323/d7113fe4-79bb-452c-a4f5-8dd7363c88e7)
 <hr>
 <h3>Result:</h3>
+
 <hr>
 <p>Thus,a Graph was constructed and implementation of Depth First Search for the same graph was done successfully.</p>
 
